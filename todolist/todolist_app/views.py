@@ -4,7 +4,9 @@ from django.urls import reverse
 from .models import *
 # Create your views here.
 def index(request):
-    return render(request, 'todolist_app/index.html')
+    todos=Todo.objects.all()
+    content={'todos':todos}
+    return render(request, 'todolist_app/index.html',content)
 
 def createTodo(request):
     todoContent=request.POST['todoContent']
