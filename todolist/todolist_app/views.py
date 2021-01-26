@@ -13,3 +13,10 @@ def createTodo(request):
     new_todo=Todo(content=todoContent)
     new_todo.save()
     return HttpResponseRedirect(reverse("index"))
+
+def deleteTodo(request):
+    delete_todo_id= request.GET['todoNum']
+    print("완료 todo id",delete_todo_id)
+    todo=Todo.objects.get(id=delete_todo_id)
+    todo.delete()
+    return HttpResponseRedirect(reverse("index"))
